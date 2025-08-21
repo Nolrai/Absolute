@@ -61,6 +61,7 @@ library
 
     -- Modules exported by the library.
     exposed-modules:  Data.Absolute
+                    , Data.Vizzy
 
     -- Modules included in this library but not exported.
     -- other-modules:
@@ -71,6 +72,10 @@ library
     -- Other library packages from which modules are imported.
     build-depends:    base ^>=4.21.0.0
                     , xml-conduit
+                    , lens
+                    , containers
+                    , xml-lens
+                    , text
 
     -- Directories containing source files.
     hs-source-dirs:   src-lib

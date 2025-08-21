@@ -1,4 +1,6 @@
 {-# LANGUAGE NoImplicitPrelude, OverloadedStrings #-}
+{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
+{-# HLINT ignore "Use print" #-}
 module Main where
 import System.Environment as Env (getArgs)
 import System.Directory as Directory ( getDirectoryContents )
@@ -6,9 +8,8 @@ import System.Exit (die)
 import Data.Aeson (eitherDecode, FromJSON)
 import qualified Data.ByteString.Lazy as BL
 import GHC.Generics (Generic)
-import Data.Absolute (readVizzyFile, xml)
+import Data.Absolute (readVizzyFile)
 import qualified Data.List
-import Text.XML ( renderText, def )
 import Data.Text.Lazy (show, unpack, pack)
 import Data.Text.Lazy.IO (putStrLn)
 import Text.Show ( Show )
@@ -44,4 +45,4 @@ main = do
       putStrLn $ "Flight Program File: " <> pack fileName
       let filePath = flightProgramsPath config <> "/" <> fileName
       vizzy <- readVizzyFile filePath
-      putStrLn $ "Vizzy Content: " <> renderText def (xml vizzy)
+      putStrLn $ show vizzy
