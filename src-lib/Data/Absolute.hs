@@ -1,13 +1,8 @@
-module Data.Absolute (readVizzyFile, VizzyFile (..)) where
+module Data.Absolute (readVizzyFile) where
 import Prelude hiding (readFile)
-import Text.XML (readFile, def, Document)
+import Text.XML (readFile, def)
+import Data.Vizzy (VizzyProgram, xmlToVizzyProgram)
 
-readVizzyFile :: FilePath -> IO VizzyFile
-readVizzyFile path = toVizzyFile <$> readFile def path
+readVizzyFile :: FilePath -> IO VizzyProgram
+readVizzyFile path = xmlToVizzyProgram <$> readFile def path
 
--- For now this is just a wrapper around an xml document, but later this will be the concrete syntax tree
-newtype VizzyFile = XML {xml :: Document}
-    deriving Show
-
-toVizzyFile :: Document -> VizzyFile
-toVizzyFile = XML
